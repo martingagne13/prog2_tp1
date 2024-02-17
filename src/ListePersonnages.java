@@ -85,9 +85,15 @@ public class ListePersonnages {
     * @throws IndexOutOfBoundsException si l'indice donne n'existe pas dans cette liste.
     *         (indice < 0 || indice >= size())
     */
-//   public Personnage obtenir (int indice) {
-//      // A COMPLETER
-//   }
+   public Personnage obtenir (int indice) {
+      if((indice < 0 || indice >= personnages.size())){
+         throw new IndexOutOfBoundsException();
+
+      }else{
+         return personnages.get(indice);
+
+      }
+   }
    
    /**
     * Permet d'ajouter le personnage donne en parametre a l'indice donne en 
@@ -103,9 +109,19 @@ public class ListePersonnages {
     * @throws IndexOutOfBoundsException si l'indice donne n'est pas valide.
     *         (indice < 0 || indice > size())
     */
-//   public boolean ajouter (Personnage personnage, int indice) {
-//      // A COMPLETER
-//   }
+   public boolean ajouter (Personnage personnage, int indice) {
+      if(personnage == null || existe(personnage)){
+         return false;
+
+      }else if(indice < 0 || indice > personnages.size()){
+         throw new IndexOutOfBoundsException();
+
+      }else{
+         personnages.add(indice, personnage);
+         return true;
+
+      }
+   }
    
    /**
     * Permet d'ajouter le personnage donne en parametre a la fin de cette liste.
@@ -142,10 +158,17 @@ public class ListePersonnages {
     * @param personnage le personnage a supprimer de cette liste.
     * @return true si la suppression a ete effectuee, false sinon.
     */
-//   public boolean supprimer (Personnage personnage) {
-//      // A COMPLETER
-//   }
-//
+   public boolean supprimer (Personnage personnage) {
+      for(Personnage e: personnages){
+         if(personnage.equals(e)){
+            personnages.remove(e);
+            return true;
+
+         }
+      }
+      return false;
+   }
+
    /**
     * Permet de supprimer de cette liste le personnage a l'indice donne en parametre.
     * 
@@ -154,9 +177,16 @@ public class ListePersonnages {
     * @param indice l'indice du personnage a supprimer de cette liste
     * @return true si la suppression a ete effectuee, false sinon.
     */
-//   public boolean supprimer (int indice) {
-//      // A COMPLETER
-//   }
+   public boolean supprimer (int indice) {
+      if(indice > personnages.size() || indice < 0){
+         return false;
+
+      }else {
+         personnages.remove(indice);
+         return true;
+
+      }
+   }
    
    /**
     * Execute une attaque du personnage à l'indiceAttaquant sur le personnage
@@ -172,9 +202,10 @@ public class ListePersonnages {
     * @throws IndexOutOfBoundsException si indiceAttaquant ou indiceVictime n'existe
     *         pas dans cette liste (indice < 0 || indice >= size())        
     */
-//   public void attaquer (int indiceAttaquant, int indiceVictime) {
-//      // A COMPLETER
-//   }
+   public void attaquer (int indiceAttaquant, int indiceVictime) {
+
+
+   }
    
    /**
     * Permet d'ajouter de la force vitale au personnage a l'indice donne, dans cette liste.
