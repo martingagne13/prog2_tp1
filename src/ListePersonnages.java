@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * Le constructeur par defaut permet de construire une liste de personnages vide.
  * 
- * @author <inserez votre nom et code permanent ici>
+ * @author <Martin Gagne GAGM24039801>
  * @version Hiver 2024
  */
 public class ListePersonnages {
@@ -22,7 +22,14 @@ public class ListePersonnages {
     * @return le nombre de personnages dans cette liste.
     */
    public int taille() {
-      // A COMPLETER
+      int compteur = 0;
+
+      for(Personnage e: personnages){
+         if(e != null){
+            compteur++;
+         }
+      }
+      return compteur;
    }
    
    /**
@@ -37,7 +44,14 @@ public class ListePersonnages {
     * @return l'indice du personnage dans cette liste ou -1 si celui-ci n'existe pas.
     */
    public int indiceDe (Personnage personnage) {
-      // A COMPLETER
+      for (Personnage e: personnages) {
+         if(e.equals(personnage)){
+            return personnages.indexOf(e);
+
+         }
+      }
+
+      return -1;
    }
    
    /**
@@ -53,7 +67,14 @@ public class ListePersonnages {
     *         false sinon.
     */
    public boolean existe (Personnage personnage) {
-      // A COMPLETER
+      for(Personnage e: personnages){
+         if(personnage.equals(e)){
+            return true;
+
+         }
+      }
+
+      return false;
    }
    
    /**
@@ -64,9 +85,9 @@ public class ListePersonnages {
     * @throws IndexOutOfBoundsException si l'indice donne n'existe pas dans cette liste.
     *         (indice < 0 || indice >= size())
     */
-   public Personnage obtenir (int indice) {
-      // A COMPLETER
-   }
+//   public Personnage obtenir (int indice) {
+//      // A COMPLETER
+//   }
    
    /**
     * Permet d'ajouter le personnage donne en parametre a l'indice donne en 
@@ -82,9 +103,9 @@ public class ListePersonnages {
     * @throws IndexOutOfBoundsException si l'indice donne n'est pas valide.
     *         (indice < 0 || indice > size())
     */
-   public boolean ajouter (Personnage personnage, int indice) {
-      // A COMPLETER
-   }
+//   public boolean ajouter (Personnage personnage, int indice) {
+//      // A COMPLETER
+//   }
    
    /**
     * Permet d'ajouter le personnage donne en parametre a la fin de cette liste.
@@ -97,7 +118,14 @@ public class ListePersonnages {
     * @return true si l'ajout a ete effectue, false sinon
     */
    public boolean ajouter (Personnage personnage) {
-      // A COMPLETER
+      if(personnage != null){
+         personnages.add(personnage);
+         return true;
+
+      }else{
+         return false;
+
+      }
    }
    
    
@@ -114,10 +142,10 @@ public class ListePersonnages {
     * @param personnage le personnage a supprimer de cette liste.
     * @return true si la suppression a ete effectuee, false sinon.
     */
-   public boolean supprimer (Personnage personnage) {
-      // A COMPLETER
-   }
-   
+//   public boolean supprimer (Personnage personnage) {
+//      // A COMPLETER
+//   }
+//
    /**
     * Permet de supprimer de cette liste le personnage a l'indice donne en parametre.
     * 
@@ -126,9 +154,9 @@ public class ListePersonnages {
     * @param indice l'indice du personnage a supprimer de cette liste
     * @return true si la suppression a ete effectuee, false sinon.
     */
-   public boolean supprimer (int indice) {
-      // A COMPLETER
-   }
+//   public boolean supprimer (int indice) {
+//      // A COMPLETER
+//   }
    
    /**
     * Execute une attaque du personnage à l'indiceAttaquant sur le personnage
@@ -144,9 +172,9 @@ public class ListePersonnages {
     * @throws IndexOutOfBoundsException si indiceAttaquant ou indiceVictime n'existe
     *         pas dans cette liste (indice < 0 || indice >= size())        
     */
-   public void attaquer (int indiceAttaquant, int indiceVictime) {
-      // A COMPLETER
-   }
+//   public void attaquer (int indiceAttaquant, int indiceVictime) {
+//      // A COMPLETER
+//   }
    
    /**
     * Permet d'ajouter de la force vitale au personnage a l'indice donne, dans cette liste.
@@ -158,9 +186,9 @@ public class ListePersonnages {
     * @throws IndexOutOfBoundsException si indice n'existe pas dans cette liste 
     *         (indice < 0 || indice >= size())  
     */
-   public void revigorer (int indice, int forceVitale) {
-      // A COMPLETER
-   }
+//   public void revigorer (int indice, int forceVitale) {
+//      // A COMPLETER
+//   }
    
    /**
     * Permet de modifier le mode d'attaque du personnage a l'indice donne dans cette liste.
@@ -175,10 +203,10 @@ public class ListePersonnages {
     *         (indice < 0 || indice >= size()) 
     * @throws AttributPersonnageInvalideException si nouveauModeAttaque est null.  
     */
-   public void modifierModeDAttaque (int indice, ModeDAttaque nouveauModeAttaque)
-         throws AttributPersonnageInvalideException {
-      // A COMPLETER
-   }
+//   public void modifierModeDAttaque (int indice, ModeDAttaque nouveauModeAttaque)
+//         throws AttributPersonnageInvalideException {
+//      // A COMPLETER
+//   }
    
    /**
     * Permet d'obtenir tous les personnages de cette liste du type donne en parametre 
@@ -192,9 +220,9 @@ public class ListePersonnages {
     * @return la liste de tous les personnages du type donne en parametre
     * @throws NullPointerException si type est null
     */
-   public ListePersonnages obtenirTousLesPersonnages(Class type) {
-      // A COMPLETER
-   }
+//   public ListePersonnages obtenirTousLesPersonnages(Class type) {
+//      // A COMPLETER
+//   }
    
    /**
     * Redefinition de la methode equals (voir Javadoc dans la classe Object). 
@@ -208,9 +236,9 @@ public class ListePersonnages {
     * @return true si cette liste de personnages est egale a autreListePersonnages, 
     *         false sinon.
     */   
-   @Override
-   public boolean equals (Object autreListePersonnages) {
-       // A COMPLETER
-   }
+//   @Override
+//   public boolean equals (Object autreListePersonnages) {
+//       // A COMPLETER
+//   }
    
 }
