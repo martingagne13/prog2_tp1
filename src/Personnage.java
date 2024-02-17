@@ -101,7 +101,8 @@ public abstract class Personnage  {
     }
 
     public boolean equals(Object autrePersonnage){
-        if(this.nom == autrePersonnage.getClass().getName()){
+
+        if(this.nom == ((Personnage) autrePersonnage).getNom()){
             return true;
         }else{
             return false;
