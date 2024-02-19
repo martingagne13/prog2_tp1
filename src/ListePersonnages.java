@@ -204,7 +204,17 @@ public class ListePersonnages {
     */
    public void attaquer (int indiceAttaquant, int indiceVictime) {
 
+      if((indiceAttaquant < 0 || indiceAttaquant >= personnages.size())|| (indiceVictime < 0 || indiceVictime >= personnages.size())) {
+         throw new IndexOutOfBoundsException();
 
+      }else {
+         personnages.get(indiceAttaquant).attaquer(personnages.get(indiceVictime));
+
+         if (personnages.get(indiceVictime).getForceVitale() <= 0) {
+            supprimer(indiceVictime);
+
+         }
+      }
    }
    
    /**
@@ -217,9 +227,9 @@ public class ListePersonnages {
     * @throws IndexOutOfBoundsException si indice n'existe pas dans cette liste 
     *         (indice < 0 || indice >= size())  
     */
-//   public void revigorer (int indice, int forceVitale) {
-//      // A COMPLETER
-//   }
+   public void revigorer (int indice, int forceVitale) {
+         personnages.get(indice).seRevigorer(forceVitale);
+   }
    
    /**
     * Permet de modifier le mode d'attaque du personnage a l'indice donne dans cette liste.
@@ -234,10 +244,10 @@ public class ListePersonnages {
     *         (indice < 0 || indice >= size()) 
     * @throws AttributPersonnageInvalideException si nouveauModeAttaque est null.  
     */
-//   public void modifierModeDAttaque (int indice, ModeDAttaque nouveauModeAttaque)
-//         throws AttributPersonnageInvalideException {
-//      // A COMPLETER
-//   }
+   public void modifierModeDAttaque (int indice, ModeDAttaque nouveauModeAttaque)
+         throws AttributPersonnageInvalideException {
+      personnages.get(indice).setModeDAttaque(nouveauModeAttaque);
+   }
    
    /**
     * Permet d'obtenir tous les personnages de cette liste du type donne en parametre 
@@ -251,9 +261,18 @@ public class ListePersonnages {
     * @return la liste de tous les personnages du type donne en parametre
     * @throws NullPointerException si type est null
     */
-//   public ListePersonnages obtenirTousLesPersonnages(Class type) {
-//      // A COMPLETER
-//   }
+   public ListePersonnages obtenirTousLesPersonnages(Class type) {
+      ListePersonnages l1 = new ListePersonnages();
+
+      for (Personnage e: personnages) {
+         if(e.getClass().getTypeName() == type.getTypeName()){
+            l1.ajouter(e);
+
+         }
+      }
+
+      return l1;
+   }
    
    /**
     * Redefinition de la methode equals (voir Javadoc dans la classe Object). 
@@ -267,9 +286,23 @@ public class ListePersonnages {
     * @return true si cette liste de personnages est egale a autreListePersonnages, 
     *         false sinon.
     */   
-//   @Override
-//   public boolean equals (Object autreListePersonnages) {
-//       // A COMPLETER
-//   }
+   @Override
+   public boolean equals (Object autreListePersonnages) {
+      int compteur = 0;
+      ListePersonnages autreObjet = (ListePersonnages) autreListePersonnages;
+
+      if(personnages.size() == autreObjet.taille()){
+         for(Personnage e: personnages){
+            if(!e.equals(autreObjet.personnages.get(compteur))){
+               return false;
+            }
+         }
+      }else {
+         return false;
+
+      }
+
+      return true;
+   }
    
 }
